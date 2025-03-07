@@ -3,7 +3,20 @@ prometheus-node-exporter:
 kube-state-metrics:
  enabled: false
 alertmanager:
- enabled: false
+ enabled: true 
+ persistence:
+   enabled: false
+ ingress:
+   enabled: true
+   className: nginx
+   hosts:
+     - host: grp4-alertmanager.sctp-sandbox.com
+       paths:
+         - path: /
+           pathType: ImplementationSpecific
+   annotations:
+     external-dns.alpha.kubernetes.io/hostname: "grp4-alertmanager.sctp-sandbox.com"
+
 serverFiles:
  prometheus.yml:
    scrape_configs:
@@ -26,6 +39,6 @@ server:
    enabled: true
    ingressClassName: nginx
    hosts:
-     - <group-x>-prom.sctp-sandbox.com
+     - grp4-prom.sctp-sandbox.com
  annotations:
-   external-dns.alpha.kubernetes.io/hostname: "<group-x>-prom.sctp-sandbox.com"
+   external-dns.alpha.kubernetes.io/hostname: "grp4-prom.sctp-sandbox.com"

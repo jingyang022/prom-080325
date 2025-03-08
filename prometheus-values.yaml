@@ -10,12 +10,12 @@ alertmanager:
    enabled: true
    className: nginx
    hosts:
-     - host: grp4-alertmanager.sctp-sandbox.com
+     - host: yap-alertmanager.sctp-sandbox.com
        paths:
          - path: /
            pathType: ImplementationSpecific
    annotations:
-     external-dns.alpha.kubernetes.io/hostname: "grp4-alertmanager.sctp-sandbox.com"
+     external-dns.alpha.kubernetes.io/hostname: "yap-alertmanager.sctp-sandbox.com"
 
 serverFiles:
  prometheus.yml:
@@ -27,7 +27,7 @@ serverFiles:
      - job_name: node-exporter
        static_configs:
          - targets:
-           - admin-prom-prometheus-node-exporter.monitoring:9100
+           - kube-prometheus-stack-prometheus-node-exporter.monitoring:9100
      - job_name: nginx
        static_configs:
          - targets:
@@ -39,6 +39,6 @@ server:
    enabled: true
    ingressClassName: nginx
    hosts:
-     - grp4-prom.sctp-sandbox.com
+     - yap-prom.sctp-sandbox.com
  annotations:
-   external-dns.alpha.kubernetes.io/hostname: "grp4-prom.sctp-sandbox.com"
+   external-dns.alpha.kubernetes.io/hostname: "yap-prom.sctp-sandbox.com"
